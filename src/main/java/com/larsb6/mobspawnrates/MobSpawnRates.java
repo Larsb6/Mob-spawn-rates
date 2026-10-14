@@ -1,6 +1,7 @@
 package com.larsb6.mobspawnrates;
 
 import com.larsb6.mobspawnrates.config.RatesConfig;
+import com.larsb6.mobspawnrates.network.RatesNetworking;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -14,6 +15,7 @@ public class MobSpawnRates implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		RatesConfig.load();
+		RatesNetworking.register();
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> RatesConfig.load());
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> LootCommand.register(dispatcher));
 	}

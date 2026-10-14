@@ -3,12 +3,13 @@
 	"id": "mobspawnrates",
 	"version": "${version}",
 	"name": "Mob Spawn & Loot Rates",
-	"description": "Change mob spawn rates and loot drop rates in-game with an operator-only GUI (/loot gui). Server-side: vanilla clients can use it.",
+	"description": "Change mob spawn rates and loot drop rates in-game with an operator-only GUI (/loot gui). Works server-side only (chest GUI); with the mod on the client you get a slider screen.",
 	"authors": ["larsb6"],
 	"license": "MIT",
 	"environment": "*",
 	"entrypoints": {
-		"main": ["com.larsb6.mobspawnrates.MobSpawnRates"]
+		"main": ["com.larsb6.mobspawnrates.MobSpawnRates"],
+		"client": ["com.larsb6.mobspawnrates.client.MobSpawnRatesClient"]
 	},
 	"mixins": ["mobspawnrates.mixins.json"],
 	"depends": {

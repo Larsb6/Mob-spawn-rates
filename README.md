@@ -1,8 +1,9 @@
 # Mob Spawn & Loot Rates (Fabric 1.21.11)
 
-Change how many mobs spawn and how much loot they drop, in-game, through a chest-style GUI.
+Change how many mobs spawn and how much loot they drop, in-game, through a GUI.
 
-- **Server-side GUI:** it's a normal 9x6 chest menu, so players on a server **don't need the mod installed**. Install it on the server only, or in your own client for singleplayer.
+- **Slider screen:** if your client has the mod installed, `/loot gui` opens a screen with a spawn slider and a loot slider for every mob, a search box, and per-mob reset buttons. Values are precise to 0.01.
+- **Works server-only:** players without the mod on their client get a chest-style GUI instead. It's a normal 9x6 chest menu, so it works with a vanilla client. The mod must be installed on the server, or on your own client for singleplayer.
 - **Operators only:** the command and the GUI need permission level 2 (the same level as vanilla `/loot`). If someone is de-opped while the GUI is open, it closes.
 - Settings are saved to `config/mobspawnrates.json` as soon as you change them.
 
@@ -10,12 +11,22 @@ Change how many mobs spawn and how much loot they drop, in-game, through a chest
 
 | Command | What it does |
 |---|---|
-| `/loot gui` | Opens the rates GUI |
+| `/loot gui` | Opens the slider screen, or the chest GUI if your client doesn't have the mod |
+| `/loot gui chest` | Always opens the chest GUI |
 | `/loot reload` | Reloads `config/mobspawnrates.json` from disk |
 
 Vanilla `/loot spawn|give|insert|replace` still works. The mod only adds the `gui` and `reload` subcommands.
 
-## Using the GUI
+## Using the slider screen
+
+- Drag a slider to set a value. The left half of each slider covers **0x-2x** for fine control, and the right half covers **2x-20x**.
+- For exact values, click a slider and use the **arrow keys**: **±0.01** per press, or **±0.1** with Shift.
+- Type in the search box to filter mobs. The top row is the **global** multiplier.
+- **↺** resets that row to 1x. **Reset all** needs two clicks.
+- Hover a slider to see the effective rate after the global multiplier is applied.
+- The server checks operator permission for every change, so a modified client can't bypass it.
+
+## Using the chest GUI
 
 **Mob list** (every mob, sorted by name, across several pages)
 - Click a spawn egg to edit that mob. Mobs with custom rates have an enchantment glint.

@@ -9,6 +9,17 @@ base {
 	archivesName = project.archives_base_name
 }
 
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"mobspawnrates" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings loom.officialMojangMappings()

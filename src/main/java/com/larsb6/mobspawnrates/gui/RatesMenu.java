@@ -2,13 +2,13 @@ package com.larsb6.mobspawnrates.gui;
 
 import com.larsb6.mobspawnrates.config.RatesConfig;
 import com.larsb6.mobspawnrates.config.RatesConfig.Kind;
+import com.larsb6.mobspawnrates.network.RatesNetworking;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.permissions.Permissions;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.SimpleContainer;
@@ -91,7 +91,7 @@ public class RatesMenu extends ChestMenu {
 	}
 
 	private static boolean isOperator(Player player) {
-		return player.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER);
+		return player instanceof ServerPlayer serverPlayer && RatesNetworking.isOperator(serverPlayer);
 	}
 
 	@Override

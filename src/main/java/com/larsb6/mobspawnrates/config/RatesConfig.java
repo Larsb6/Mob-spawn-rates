@@ -145,6 +145,13 @@ public final class RatesConfig {
 		save();
 	}
 
+	/** Copy of the per-mob overrides as {@code id -> [spawn, loot]}. */
+	public static synchronized Map<String, double[]> snapshotMobs() {
+		Map<String, double[]> copy = new TreeMap<>();
+		data.mobs.forEach((id, rates) -> copy.put(id, new double[]{rates.spawn, rates.loot}));
+		return copy;
+	}
+
 	public static synchronized double effective(EntityType<?> type, Kind kind) {
 		return getGlobal(kind) * getMob(type, kind);
 	}

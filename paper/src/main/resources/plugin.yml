@@ -1,0 +1,10 @@
+name: MobSpawnRates
+version: '${version}'
+main: com.larsb6.mobspawnrates.paper.MobSpawnRatesPlugin
+api-version: '1.21'
+description: Change mob spawn rates and loot drop rates with an operator-only GUI (/loot gui).
+authors: [larsb6]
+permissions:
+  mobspawnrates.admin:
+    description: Use /loot gui and /loot reload to change spawn and loot rates.
+    default: op

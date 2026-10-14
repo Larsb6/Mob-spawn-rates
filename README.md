@@ -1,4 +1,16 @@
-# Mob Spawn & Loot Rates (Fabric 1.21.11)
+# Mob Spawn & Loot Rates (Fabric & Paper 1.21.11)
+
+Comes in two versions:
+
+| | Fabric mod | Paper plugin |
+|---|---|---|
+| Jar | `dist/mob-spawn-rates-1.1.0.jar` | `dist/mob-spawn-rates-paper-1.1.0.jar` |
+| Install in | `mods/` (also needs Fabric API) | `plugins/` |
+| Source | `src/` | `paper/` |
+| Settings file | `config/mobspawnrates.json` | `plugins/MobSpawnRates/rates.yml` |
+| Who can use it | operators (permission level 2) | permission `mobspawnrates.admin` (default: operators) |
+
+Both versions have the same commands and chest GUI. Players who also have the **Fabric mod on their client** get the slider screen on either server type, including Paper.
 
 Change how many mobs spawn and how much loot they drop, in-game, through a GUI.
 
@@ -48,12 +60,19 @@ The **effective rate** of a mob is `global × per-mob`. For example, a global sp
   - Spawners, spawn eggs, `/summon`, raids and other non-natural spawns are not affected. Vanilla mob caps still decide when natural spawning stops, but the extra copies don't count towards that check.
 - **Loot rate:** the mob's loot table is rolled that many times when it dies. 0x means no loot-table drops, 3x means triple drops, and 1.5x means one or two rolls. Equipment the mob was holding and XP are unchanged.
 
+## Paper plugin notes
+
+- **`/loot` on Paper:** Paper lets a plugin take over a vanilla command name. Everything except `gui` and `reload` is passed on to the vanilla command, so `/loot spawn|give|insert|replace ...` still works. The vanilla command is also still available as `/minecraft:loot`.
+- **New-chunk animals:** Paper doesn't fire spawn events for animals created with new chunks. The plugin handles them when the new chunk first loads. Mobs that belong to structures, such as villagers and iron golems, are not affected.
+- **Loot at 0x:** the whole drop list is removed, including any equipment the mob was holding. Above 1x, only the loot table is rolled again, as in the Fabric version.
+
 ## Building
 
 Requires Java 21.
 
 ```
-./gradlew build
+./gradlew build            # Fabric mod  -> build/libs/
+./gradlew -p paper build   # Paper plugin -> paper/build/libs/
 ```
 
-The jar is written to `build/libs/mob-spawn-rates-<version>.jar`. Put it in your `mods` folder together with [Fabric API](https://modrinth.com/mod/fabric-api).
+Put the Fabric jar in your `mods` folder together with [Fabric API](https://modrinth.com/mod/fabric-api). Put the Paper jar in your server's `plugins` folder.

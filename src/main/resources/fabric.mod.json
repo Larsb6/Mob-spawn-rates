@@ -1,0 +1,20 @@
+{
+	"schemaVersion": 1,
+	"id": "mobspawnrates",
+	"version": "${version}",
+	"name": "Mob Spawn & Loot Rates",
+	"description": "Change mob spawn rates and loot drop rates in-game with an operator-only GUI (/loot gui). Server-side: vanilla clients can use it.",
+	"authors": ["larsb6"],
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": ["com.larsb6.mobspawnrates.MobSpawnRates"]
+	},
+	"mixins": ["mobspawnrates.mixins.json"],
+	"depends": {
+		"fabricloader": ">=0.17.0",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

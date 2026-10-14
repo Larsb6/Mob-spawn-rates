@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"package": "com.larsb6.mobspawnrates.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"LivingEntityMixin",
+		"NaturalSpawnerMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
